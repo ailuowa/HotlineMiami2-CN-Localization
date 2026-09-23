@@ -1,7 +1,7 @@
 # Hotline Miami 2 简体中文汉化 / Chinese (Simplified) Localization
 
 > 让《迈阿密热线 2：错号》的菜单、操作提示、HUD、对话、字幕、章节标题全部显示简体中文。
-> 一键安装，无需改动任何游戏程序文件，随时可还原。
+> 一键安装：成就文本会对 `HotlineMiami2.exe` 做等长替换（已自动备份、Steam 成就 ID 不变），其余资源原位注入，随时可还原。
 
 **适用版本**：Steam 版《Hotline Miami 2: Wrong Number》 ｜ **系统**：Windows 10 / 11
 
@@ -12,7 +12,8 @@
 - **2889 条文本全翻译**：游戏内全部英文文本（菜单 / 操作提示 / HUD / 对话 / 字幕 / 章节标题）均为简体中文，覆盖游戏全部剧情与玩法内容；
 - **76 套字体注入 1340 个汉字字形**：原版字体不含任何中文字形（连自带日文都没有），本补丁为全部 76 套字体追加了中文字形，原版字形一个像素未动；
 - **按键标记零错漏**：`[WASD]`、`[SPACE]`、`[LMB]` 等按键标记逐条自动比对，全部原样保留；
-- **非破坏式注入**：只修改游戏资源包内的文本库与字体，不碰 exe、不碰存档、不联机（本游戏也无联机）；
+- **成就页面同步汉化**：成就名与成就描述也是中文。它们硬编码在 `HotlineMiami2.exe` 里（不读 WAD），安装器对 exe 做**等长字节替换**，所有文件偏移不变、Steam 成就 ID 不变，仍可正常解锁；
+- **非破坏式注入**：文本/字体只改 WAD；成就文本对 exe 做等长替换（原版自动备份为 `HotlineMiami2.exe.bak`），不碰存档、不联机（本游戏也无联机）；
 - **一键安装 / 一键还原**：安装前自动备份，双击即可恢复英文原版。
 
 ## 📦 下载
@@ -50,6 +51,9 @@
 **Q：其他版本（GOG / 学习版）能用吗？**
 只测试过 Steam 版。理论上 WAD 结构一致即可使用，风险自负，欢迎反馈。
 
+**Q：为什么要改 exe？不是只读 WAD 吗？**
+绝大多数文本（菜单/对话/字幕/HUD…）都在 WAD 的 `hlm2_localization.bin` 里。但**成就名与成就描述硬编码在 `HotlineMiami2.exe` 中**，只改 WAD 不会让成就页变中文，所以安装器额外对 exe 做等长字节替换：每个英文串原地换成中文 UTF-8 字节、尾部补 0 到原长，所有文件偏移不变，Steam 成就 ID 一字未动（成就照样解锁）。改动前自动备份原版 exe 为 `HotlineMiami2.exe.bak`，双击「卸载汉化.bat」即可还原。
+
 **Q：字体有点小 / 和原版像素风不一样？**
 见下方「已知限制」。
 
@@ -78,4 +82,4 @@ Simplified Chinese localization for the Steam version of Hotline Miami 2: Wrong 
 3. Launch the game — Chinese shows under the default English language (you can also pick the new "Chinese (Simplified)" entry if it appears);
 4. To revert: run `卸载汉化.bat`, or use Steam's "Verify integrity of game files".
 
-All 2,889 in-game strings are translated; CJK glyphs were injected into all 76 bitmap fonts. No executable or save files are touched. Fan-made, unofficial, not affiliated with Dennaton Games or Devolver Digital.
+All 2,889 in-game strings are translated; CJK glyphs were injected into all 76 bitmap fonts. The game executable (HotlineMiami2.exe) receives a length-safe in-place patch for the achievement names/descriptions only — Steam achievement IDs are preserved and your original exe is backed up as HotlineMiami2.exe.bak. Save files are not touched. Fan-made, unofficial, not affiliated with Dennaton Games or Devolver Digital.
